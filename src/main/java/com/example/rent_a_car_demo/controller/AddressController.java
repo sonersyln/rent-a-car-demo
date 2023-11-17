@@ -1,6 +1,6 @@
 package com.example.rent_a_car_demo.controller;
 
-import com.example.rent_a_car_demo.model.Address;
+import com.example.rent_a_car_demo.models.Address;
 import com.example.rent_a_car_demo.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

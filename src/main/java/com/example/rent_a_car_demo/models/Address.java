@@ -1,4 +1,4 @@
-package com.example.rent_a_car_demo.model;
+package com.example.rent_a_car_demo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "addresses")
@@ -34,8 +36,7 @@ public class Address {
     private String zipCode;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnoreProperties("addresses")
+    @JoinColumn(name = "user_id")
     private User user;
 
 }
