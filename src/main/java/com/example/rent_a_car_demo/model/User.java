@@ -1,5 +1,6 @@
 package com.example.rent_a_car_demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -42,4 +44,7 @@ public class User {
 
     @Column(name = "birth_date")
     private Date birthDate;
+
+    @OneToMany(mappedBy = "user")
+    private List<Address> addresses;
 }
