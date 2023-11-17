@@ -50,4 +50,10 @@ public class User {
 
     @OneToMany (mappedBy = "user")
     private List<Rental> rentals;
+
+    @OneToMany(mappedBy = "user")
+    private List<Discount> discounts;
+
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
 }

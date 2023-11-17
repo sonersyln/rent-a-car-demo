@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "rentals")
@@ -33,8 +34,6 @@ public class Rental {
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    // users ve car
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -42,5 +41,8 @@ public class Rental {
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
     private Car car;
+
+    @OneToMany(mappedBy = "rental")
+    private List<Payment> payments;
 
 }
