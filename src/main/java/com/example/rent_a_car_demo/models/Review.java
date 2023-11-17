@@ -1,4 +1,4 @@
-package com.example.rent_a_car_demo.model;
+package com.example.rent_a_car_demo.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

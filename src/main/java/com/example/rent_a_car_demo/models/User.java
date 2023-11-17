@@ -1,6 +1,5 @@
-package com.example.rent_a_car_demo.model;
+package com.example.rent_a_car_demo.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
