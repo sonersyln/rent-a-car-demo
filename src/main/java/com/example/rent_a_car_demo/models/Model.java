@@ -1,5 +1,6 @@
 package com.example.rent_a_car_demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,5 +35,6 @@ public class Model {
     private Brand brand;
 
     @OneToMany(mappedBy = "model")
+    @JsonIgnore
     private List<Car> cars;
 }

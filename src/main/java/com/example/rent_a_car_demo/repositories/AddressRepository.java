@@ -1,4 +1,4 @@
-package com.example.rent_a_car_demo.repository;
+package com.example.rent_a_car_demo.repositories;
 import com.example.rent_a_car_demo.models.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 

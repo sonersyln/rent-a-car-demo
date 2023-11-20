@@ -1,7 +1,7 @@
-package com.example.rent_a_car_demo.controller;
+package com.example.rent_a_car_demo.controllers;
 
 import com.example.rent_a_car_demo.models.Address;
-import com.example.rent_a_car_demo.service.AddressService;
+import com.example.rent_a_car_demo.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,12 +9,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/addresses")
-public class AddressController {
+public class AddressesController {
 
     private final AddressService addressService;
 
     @Autowired
-    public AddressController(AddressService addressService) {
+    public AddressesController(AddressService addressService) {
         this.addressService = addressService;
     }
 

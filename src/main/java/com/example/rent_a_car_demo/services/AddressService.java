@@ -1,7 +1,7 @@
-package com.example.rent_a_car_demo.service;
+package com.example.rent_a_car_demo.services;
 
 import com.example.rent_a_car_demo.models.Address;
-import com.example.rent_a_car_demo.repository.AddressRepository;
+import com.example.rent_a_car_demo.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

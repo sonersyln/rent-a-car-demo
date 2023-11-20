@@ -1,7 +1,7 @@
-package com.example.rent_a_car_demo.controller;
+package com.example.rent_a_car_demo.controllers;
 
 import com.example.rent_a_car_demo.models.User;
-import com.example.rent_a_car_demo.service.UserService;
+import com.example.rent_a_car_demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,12 +9,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
+public class UsersController {
 
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UsersController(UserService userService) {
         this.userService = userService;
     }
 

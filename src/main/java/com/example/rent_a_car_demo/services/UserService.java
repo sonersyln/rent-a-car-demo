@@ -1,7 +1,7 @@
-package com.example.rent_a_car_demo.service;
+package com.example.rent_a_car_demo.services;
 
 import com.example.rent_a_car_demo.models.User;
-import com.example.rent_a_car_demo.repository.UserRepository;
+import com.example.rent_a_car_demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
