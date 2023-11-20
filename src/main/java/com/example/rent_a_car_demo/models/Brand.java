@@ -10,22 +10,20 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "brands")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "brands")
 public class Brand {
-
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(name = "name",nullable = false, length = 50)
+    private int id;
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "brand")
     @JsonIgnore
     private List<Model> brands;
-
 }
