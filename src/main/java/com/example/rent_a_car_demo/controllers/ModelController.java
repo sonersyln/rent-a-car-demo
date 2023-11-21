@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/api/v1/models")
 @AllArgsConstructor
 public class ModelController {
 
@@ -20,25 +20,25 @@ public class ModelController {
 
 
     @GetMapping("/getall")
-    public List<Model> getBrandList() {
+    public List<Model> getModelList() {
 
         return  this.modelService.getModelList();
     }
 
-    @PostMapping()
-    public String createBrand(@RequestBody Model model) {
+    @PostMapping("/create")
+    public String createModel(@RequestBody Model model) {
 
         return this.modelService.createModel(model);
     }
 
-    @PutMapping("/{id}")
-    public String updateBrand(@PathVariable int id, @RequestBody Model brand) throws Exception {
+    @PutMapping("/update/{id}")
+    public String updateModel(@PathVariable int id, @RequestBody Model model) throws Exception {
 
-        return this.modelService.updateModel(id, brand);
+        return this.modelService.updateModel(id, model);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteBrand(@PathVariable int id) throws Exception {
+    @DeleteMapping("/delete/{id}")
+    public String deleteModel(@PathVariable int id) throws Exception {
 
         return this.modelService.deleteByModel(id);
     }

@@ -27,11 +27,14 @@ public class ModelService {
     }
 
     public String updateModel(int id , Model model ) throws Exception {
-        Model upToBrand = modelRepository.findById(id).orElseThrow(() -> new Exception("Could not find Brand"));
+        Model model1 = modelRepository.findById(id).orElseThrow(() -> new Exception("Could not find Brand"));
 
-        upToBrand.setName(model.getName());
-        upToBrand.setBrand(model.getBrand());
-        this.modelRepository.save(upToBrand);
+        model1.setName(model.getName());
+        model1.setFuelType(model.getFuelType());
+        model1.setEnginePower(model.getEnginePower());
+        model1.setBrand(model.getBrand());
+        model1.setCars(model.getCars());
+        this.modelRepository.save(model1);
 
         return  "Transactional Successfully Updated Model";
 
