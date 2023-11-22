@@ -34,7 +34,7 @@ public class Model {
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
-    @OneToMany(mappedBy = "model")
+    @OneToMany(mappedBy = "model",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Car> cars;
 }

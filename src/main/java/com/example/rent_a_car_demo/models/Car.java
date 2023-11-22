@@ -33,7 +33,7 @@ public class Car {
     private String licencePlate;
 
     @ManyToOne
-    @JoinColumn(name = "model_id", nullable = false)
+    @JoinColumn(name = "model_id", nullable = false, )
     private Model model;
 
     @ManyToOne

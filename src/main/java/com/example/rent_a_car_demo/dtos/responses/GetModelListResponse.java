@@ -1,19 +1,14 @@
-package com.example.rent_a_car_demo.dtos.requests;
+package com.example.rent_a_car_demo.dtos.responses;
 
 import com.example.rent_a_car_demo.models.Brand;
-import com.example.rent_a_car_demo.models.Car;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateModelRequest {
+public class GetModelListResponse {
 
 
     private String name;
@@ -22,8 +17,5 @@ public class UpdateModelRequest {
 
     private String enginePower;
 
-    private Brand brand;
-
-
-
+    private String brandName;
 }

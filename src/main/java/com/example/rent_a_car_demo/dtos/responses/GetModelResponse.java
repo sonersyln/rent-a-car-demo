@@ -1,15 +1,13 @@
-package com.example.rent_a_car_demo.dtos.requests;
+package com.example.rent_a_car_demo.dtos.responses;
 
-import com.example.rent_a_car_demo.models.Brand;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddModelRequest {
+public class GetModelResponse {
 
     private String name;
 
@@ -17,7 +15,5 @@ public class AddModelRequest {
 
     private String enginePower;
 
-    private Brand brand;
-
-
+    private String brandName;
 }
