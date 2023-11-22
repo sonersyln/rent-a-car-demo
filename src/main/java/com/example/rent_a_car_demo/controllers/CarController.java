@@ -1,46 +1,45 @@
 package com.example.rent_a_car_demo.controllers;
 
-import com.example.rent_a_car_demo.models.Car;
+import com.example.rent_a_car_demo.dtos.requests.AddCarRequest;
+import com.example.rent_a_car_demo.dtos.requests.UpdateCarRequest;
+import com.example.rent_a_car_demo.dtos.responses.GetCarListResponse;
+import com.example.rent_a_car_demo.dtos.responses.GetCarResponse;
 import com.example.rent_a_car_demo.services.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/cars")
+@AllArgsConstructor
 public class CarController {
 
     private final CarService carService;
 
-    @Autowired
-    public CarController(CarService carService) {
-        this.carService = carService;
-    }
 
     @GetMapping("/getall")
-    public List<Car> getAllCar() {
-        return carService.getAllCars();
+    public List<GetCarListResponse> getAllCar() {
+        return this.carService.getAllCars();
     }
 
     @GetMapping("/get")
-    public Car getCarById(@RequestParam(value = "id") Integer id) {
+    public GetCarResponse getCarById(@RequestParam(value = "id") Integer id) {
         return carService.getCarById(id);
     }
 
     @PostMapping("/add")
-    public void saveCar(@RequestBody Car car) {
-        carService.saveCar(car);
+    public String saveCar(@RequestBody AddCarRequest addCarRequest) {
+        return carService.saveCar(addCarRequest);
     }
 
-    @PutMapping("/{id}")
-    public void updateCar(@PathVariable Integer id, @RequestBody Car car) {
-        car.setId(id);
-        carService.saveCar(car);
+    @PutMapping("/update")
+    public String updateCar(@RequestBody UpdateCarRequest updateCarRequest) throws Exception {
+        return this.carService.updateCar(updateCarRequest);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteCar(@PathVariable Integer id) {
-        carService.deleteCar(id);
+    @DeleteMapping("/delete/{id}")
+    public String deleteCar(@PathVariable Integer id) throws Exception {
+        return this.carService.deleteCar(id);
     }
 }

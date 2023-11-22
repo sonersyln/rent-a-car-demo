@@ -51,7 +51,7 @@ public class BrandService {
 
         upToBrand.setName(updateBrandRequest.getName());
         this.brandRepository.save(upToBrand);
-        return "Transaction Successful ";
+        return "Transaction Successful";
 
     }
     public String deleteByBrand(int id) throws Exception {
