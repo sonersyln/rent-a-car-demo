@@ -1,5 +1,9 @@
 package com.example.rent_a_car_demo.controllers;
 
+import com.example.rent_a_car_demo.dtos.requests.AddUserRequest;
+import com.example.rent_a_car_demo.dtos.requests.UpdateUserRequest;
+import com.example.rent_a_car_demo.dtos.responses.GetUserListResponse;
+import com.example.rent_a_car_demo.dtos.responses.GetUserResponse;
 import com.example.rent_a_car_demo.models.User;
 import com.example.rent_a_car_demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,31 +23,35 @@ public class UsersController {
     }
 
     @GetMapping("/getall")
-    public List<User> getAllUsers() {
+    public List<GetUserListResponse> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/get")
-    public User getUserById(@RequestParam(value ="id") Integer id) {
+    public GetUserResponse getUserById(@RequestParam(value ="id") Integer id) {
         return userService.getUserById(id);
     }
 
 
     @GetMapping("/byUsername/{username}")
-    public User getUserByUsername(@PathVariable String username) {
+    public GetUserResponse getUserByUsername(@PathVariable String username) {
         return userService.getUserByUsername(username);
     }
 
 
     @PostMapping("/add")
-    public void saveUser(@RequestBody User user) {
-        userService.saveUser(user);
+    public String saveUser(@RequestBody AddUserRequest user) {
+
+
+        return userService.saveUser(user);
     }
 
     @PutMapping("/{id}")
-    public void updateUser(@PathVariable Integer id, @RequestBody User user) {
-        user.setId(id);
-        userService.saveUser(user);
+    public String updateUser(@PathVariable int id, @RequestBody UpdateUserRequest user) {
+
+
+
+        return   userService.updateUser(id,user);
     }
 
     @DeleteMapping("/{id}")

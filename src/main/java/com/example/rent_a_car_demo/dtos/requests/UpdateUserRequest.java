@@ -9,8 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddUserRequest {
-
+public class UpdateUserRequest {
     private String firstName;
 
     private String lastName;
@@ -26,4 +25,6 @@ public class AddUserRequest {
     private String gender;
 
     private Date birthDate;
+
+
 }

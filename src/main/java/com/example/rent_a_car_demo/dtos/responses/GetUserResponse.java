@@ -1,4 +1,4 @@
-package com.example.rent_a_car_demo.dtos.requests;
+package com.example.rent_a_car_demo.dtos.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,15 +9,14 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddUserRequest {
+public class GetUserResponse {
+
 
     private String firstName;
 
     private String lastName;
 
     private String username;
-
-    private String password;
 
     private String email;
 
