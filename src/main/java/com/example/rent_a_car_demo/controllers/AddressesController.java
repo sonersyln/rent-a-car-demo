@@ -1,5 +1,9 @@
 package com.example.rent_a_car_demo.controllers;
 
+import com.example.rent_a_car_demo.dtos.requests.AddAddressRequest;
+import com.example.rent_a_car_demo.dtos.requests.UpdateAddressRequest;
+import com.example.rent_a_car_demo.dtos.responses.GetAddressListResponse;
+import com.example.rent_a_car_demo.dtos.responses.GetAddressResponse;
 import com.example.rent_a_car_demo.models.Address;
 import com.example.rent_a_car_demo.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +23,24 @@ public class AddressesController {
     }
 
     @GetMapping("/getall")
-    public List<Address> getAllAddresses() {
+    public List<GetAddressListResponse> getAllAddresses() {
         return addressService.getAllAddresses();
     }
 
     @GetMapping("/get")
-    public Address getAddressById(@RequestParam(value ="id") Integer id) {
+    public GetAddressResponse getAddressById(@RequestParam(value = "id") Integer id) {
         return addressService.getAddressById(id);
     }
 
     @PostMapping("/add")
-    public void saveAddress(@RequestBody Address address) {
-        addressService.saveAddress(address);
+    public void saveAddress(@RequestBody AddAddressRequest request) {
+        addressService.saveAddress(request);
     }
 
-    @PutMapping ("/{id}")
-    public void updateAddress(@PathVariable Integer id, @RequestBody Address address) {
-        address.setId(id);
-        addressService.saveAddress(address);
+    @PutMapping("/{id}")
+    public void updateAddress(@PathVariable Integer id, @RequestBody UpdateAddressRequest address) {
+
+        addressService.updateAddress(id, address);
     }
 
     @DeleteMapping("/{id}")
