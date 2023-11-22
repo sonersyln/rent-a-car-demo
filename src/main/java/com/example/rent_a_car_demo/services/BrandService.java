@@ -1,10 +1,15 @@
 package com.example.rent_a_car_demo.services;
 
+import com.example.rent_a_car_demo.dtos.requests.AddBrandRequest;
+import com.example.rent_a_car_demo.dtos.requests.UpdateBrandRequest;
+import com.example.rent_a_car_demo.dtos.responses.GetBrandListResponse;
+import com.example.rent_a_car_demo.dtos.responses.GetBrandResponse;
 import com.example.rent_a_car_demo.models.Brand;
 import com.example.rent_a_car_demo.repositories.BrandRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,25 +18,39 @@ public class BrandService {
 
     private BrandRepository brandRepository;
 
-    public List<Brand> getBrandList() {
+    public List<GetBrandListResponse> getBrandList() {
+        List<Brand> brandList = brandRepository.findAll();
+        List<GetBrandListResponse> getBrandListResponse = new ArrayList<>();
 
-        return this.brandRepository.findAll();
+        for (Brand brand : brandList) {
+            GetBrandListResponse response = new GetBrandListResponse();
+            response.setName(brand.getName());
+            getBrandListResponse.add(response);
+        }
+        return getBrandListResponse;
     }
 
-    public String createBrand(Brand brand) {
+    public GetBrandResponse getBrandById(Integer id) {
+        Brand brand = brandRepository.findById(id).orElseThrow();
 
-        this.brandRepository.save(brand);
+        GetBrandResponse dto = new GetBrandResponse();
+        dto.setName(brand.getName());
+
+        return dto;
+    }
+    public String createBrand(AddBrandRequest addBrandRequest) {
+        Brand brand = new Brand();
+        brand.setName(addBrandRequest.getName());
+        brandRepository.save(brand);
 
         return "Transaction Successful ";
     }
 
-    public String updateBrand(int id , Brand brand ) throws Exception {
-        Brand upToBrand = brandRepository.findById(id).orElseThrow(() -> new Exception("Could not find Brand"));
+    public String updateBrand(UpdateBrandRequest updateBrandRequest ) throws Exception {
+        Brand upToBrand = brandRepository.findById(updateBrandRequest.getId()).orElseThrow(() -> new Exception("Could not find Brand"));
 
-        upToBrand.setName(brand.getName());
-        upToBrand.setBrands(brand.getBrands());
+        upToBrand.setName(updateBrandRequest.getName());
         this.brandRepository.save(upToBrand);
-
         return "Transaction Successful ";
 
     }
