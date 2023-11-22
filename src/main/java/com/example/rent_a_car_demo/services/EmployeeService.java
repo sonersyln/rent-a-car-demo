@@ -1,31 +1,80 @@
 package com.example.rent_a_car_demo.services;
 
+import com.example.rent_a_car_demo.dtos.requests.AddEmployeeRequest;
+import com.example.rent_a_car_demo.dtos.requests.UpdateEmployeeRequest;
+import com.example.rent_a_car_demo.dtos.responses.GetEmployeeListResponse;
+import com.example.rent_a_car_demo.dtos.responses.GetEmployeeResponse;
 import com.example.rent_a_car_demo.models.Employee;
 import com.example.rent_a_car_demo.repositories.EmployeeRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class EmployeeService {
 
-    private final EmployeeRepository employeeRepository;
+    private  EmployeeRepository employeeRepository;
 
-    @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+
+    public List<GetEmployeeListResponse>getEmployeeList() {
+        List<Employee>employeeList = employeeRepository.findAll();
+        List<GetEmployeeListResponse> getEmployeeListResponse = new ArrayList<>();
+
+        for (Employee employee : employeeList) {
+            GetEmployeeListResponse response = new GetEmployeeListResponse();
+            response.setFirstName(employee.getFirstName());
+            getEmployeeListResponse.add(response);
+        }
+        return getEmployeeListResponse;
+
     }
 
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+    public GetEmployeeResponse getEmployeeById(Integer id) {
+        Employee employee =employeeRepository.findById(id).orElseThrow();
+
+        GetEmployeeResponse dto = new GetEmployeeResponse();
+        dto.setFirstName(employee.getFirstName());
+        dto.setLastName(employee.getLastName());
+        dto.setUsername(employee.getUsername());
+
+        return dto;
     }
 
-    public Employee getEmployeeById(Integer id) {
-        return employeeRepository.findById(id).orElseThrow();
+    public String createEmploye (AddEmployeeRequest addEmployeeRequest) {
+        Employee employee = new Employee();
+        employee.setFirstName(addEmployeeRequest.getFirstName());
+        employee.setLastName(addEmployeeRequest.getLastName());
+        employee.setUsername(addEmployeeRequest.getUsername());
+        employee.setPassword(addEmployeeRequest.getPassword());
+        employee.setEmail(addEmployeeRequest.getEmail());
+        employee.setRole(addEmployeeRequest.getRole());
+        employee.setPhone(addEmployeeRequest.getPhone());
+        employee.setGender(addEmployeeRequest.getGender());
+        employee.setBirthDate(addEmployeeRequest.getBirthDate());
+        employeeRepository.save(employee);
+        return "Transaction Successful ";
+    }
+    public String updateEmployee(UpdateEmployeeRequest updateEmployeeRequest) {
+        Employee employee = employeeRepository.findById(updateEmployeeRequest.getId()).orElseThrow();
+
+        employee.setFirstName(updateEmployeeRequest.getFirstName());
+        employee.setLastName(updateEmployeeRequest.getLastName());
+        employee.setUsername(updateEmployeeRequest.getUsername());
+        employee.setPassword(updateEmployeeRequest.getPassword());
+        employee.setEmail(updateEmployeeRequest.getEmail());
+
+        this.employeeRepository.save(employee);
+        return "Transaction Successful ";
     }
 
-    public void saveEmployee(Employee employee){employeeRepository.save(employee);}
+    public String deleteByEmployee(int id) throws Exception {
+        this.employeeRepository.findById(id).orElseThrow(() -> new Exception("Could not"));
 
-    public void deleteEmployee(Integer id){employeeRepository.deleteById(id);}
+        this.employeeRepository.deleteById(id);
+        return "Deletion successful";
+    }
 }

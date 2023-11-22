@@ -20,7 +20,7 @@ public class Rental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column(name = "rental_start_date", nullable = false)
     private Date rentalStartDate;
@@ -29,7 +29,7 @@ public class Rental {
     private Date rentalEndDate;
 
     @Column(name = "total_cost", nullable = false)
-    private Double totalCost;
+    private double totalCost;
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
