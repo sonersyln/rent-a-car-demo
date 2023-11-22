@@ -1,5 +1,6 @@
 package com.example.rent_a_car_demo.models;
 
+import com.example.rent_a_car_demo.dtos.requests.AddEmployeeRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee {
+public class Employee extends AddEmployeeRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

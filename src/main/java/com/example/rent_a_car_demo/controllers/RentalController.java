@@ -1,33 +1,38 @@
 package com.example.rent_a_car_demo.controllers;
 
+import com.example.rent_a_car_demo.dtos.requests.AddRentalRequest;
+import com.example.rent_a_car_demo.dtos.requests.UpdateRentalRequest;
+import com.example.rent_a_car_demo.dtos.responses.GetRentalListResponse;
+import com.example.rent_a_car_demo.dtos.responses.GetRentalResponse;
 import com.example.rent_a_car_demo.models.Rental;
 import com.example.rent_a_car_demo.services.RentalService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/rentals")
+@AllArgsConstructor
 public class RentalController {
 
     private final RentalService rentalService;
-    @Autowired
-    public RentalController(RentalService rentalService) {
-        this.rentalService = rentalService;
-    }
+
     @GetMapping("/getall")
-    public List<Rental> getAllRentals(){return rentalService.getAllByRentals();}
-    @GetMapping("/get")
-    public Rental getRentalById(@RequestParam(value = "id") Integer id){return rentalService.getRentalById(id);
+    public List<GetRentalListResponse> getRentalList(){
+        return this.rentalService.getRentalList();}
+    @GetMapping("/{id}")
+    public GetRentalResponse getRentalById(@PathVariable int id){
+        return this.rentalService.getRentalById(id);
     }
-    @PostMapping("/add")
-    public void saveRental(@RequestBody Rental rental){rentalService.saveRental(rental);}
-    @PutMapping("/{id}")
-    public void updateRental(@PathVariable Integer id,@RequestBody Rental rental){
-        rental.setId(id);
-        rentalService.saveRental(rental);
+    @PostMapping("/create")
+    public String createRental(@RequestBody AddRentalRequest addRentalRequest){
+        return this.rentalService.createRental(addRentalRequest);}
+    @PutMapping("/update")
+    public String updateRental(@RequestBody UpdateRentalRequest updateRentalRequest) throws Exception {
+        return this.rentalService.updateRental(updateRentalRequest);
     }
-    @DeleteMapping("/{id}")
-    public void deleteRental(@PathVariable Integer id){rentalService.deleteRental(id);}
+    @DeleteMapping("/delete/{id}")
+    public String deleteRental(@PathVariable int id) throws Exception {
+        return this.rentalService.deleteByRental(id);}
 }
