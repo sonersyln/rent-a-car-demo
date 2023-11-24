@@ -1,6 +1,6 @@
 package com.example.rent_a_car_demo.models;
 
-import com.example.rent_a_car_demo.dtos.requests.AddEmployeeRequest;
+import com.example.rent_a_car_demo.dtos.requests.addRequests.AddEmployeeRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

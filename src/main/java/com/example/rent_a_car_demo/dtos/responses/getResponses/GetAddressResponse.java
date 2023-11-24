@@ -1,4 +1,4 @@
-package com.example.rent_a_car_demo.dtos.responses;
+package com.example.rent_a_car_demo.dtos.responses.getResponses;
 
 import com.example.rent_a_car_demo.models.User;
 import lombok.AllArgsConstructor;

@@ -1,11 +1,10 @@
 package com.example.rent_a_car_demo.controllers;
 
-import com.example.rent_a_car_demo.dtos.requests.AddUserRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateUserRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetUserListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetUserResponse;
-import com.example.rent_a_car_demo.models.User;
-import com.example.rent_a_car_demo.services.UserService;
+import com.example.rent_a_car_demo.dtos.requests.addRequests.AddUserRequest;
+import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateUserRequest;
+import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetUserListResponse;
+import com.example.rent_a_car_demo.dtos.responses.getResponses.GetUserResponse;
+import com.example.rent_a_car_demo.services.concretes.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,27 +14,27 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UsersController {
 
-    private final UserService userService;
+    private final UserManager userManager;
 
     @Autowired
-    public UsersController(UserService userService) {
-        this.userService = userService;
+    public UsersController(UserManager userManager) {
+        this.userManager = userManager;
     }
 
     @GetMapping("/getall")
     public List<GetUserListResponse> getAllUsers() {
-        return userService.getAllUsers();
+        return userManager.getAllUsers();
     }
 
     @GetMapping("/get")
     public GetUserResponse getUserById(@RequestParam(value ="id") Integer id) {
-        return userService.getUserById(id);
+        return userManager.getUserById(id);
     }
 
 
     @GetMapping("/byUsername/{username}")
     public GetUserResponse getUserByUsername(@PathVariable String username) {
-        return userService.getUserByUsername(username);
+        return userManager.getUserByUsername(username);
     }
 
 
@@ -43,7 +42,7 @@ public class UsersController {
     public String saveUser(@RequestBody AddUserRequest user) {
 
 
-        return userService.saveUser(user);
+        return userManager.saveUser(user);
     }
 
     @PutMapping("/{id}")
@@ -51,11 +50,11 @@ public class UsersController {
 
 
 
-        return   userService.updateUser(id,user);
+        return   userManager.updateUser(id,user);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Integer id) {
-        userService.deleteUser(id);
+        userManager.deleteUser(id);
     }
 }

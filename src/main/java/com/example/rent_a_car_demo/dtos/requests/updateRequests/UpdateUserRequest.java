@@ -1,4 +1,4 @@
-package com.example.rent_a_car_demo.dtos.requests;
+package com.example.rent_a_car_demo.dtos.requests.updateRequests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

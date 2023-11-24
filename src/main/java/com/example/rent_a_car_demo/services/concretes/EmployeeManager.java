@@ -1,13 +1,13 @@
-package com.example.rent_a_car_demo.services;
+package com.example.rent_a_car_demo.services.concretes;
 
-import com.example.rent_a_car_demo.dtos.requests.AddEmployeeRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateEmployeeRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetEmployeeListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetEmployeeResponse;
+import com.example.rent_a_car_demo.dtos.requests.addRequests.AddEmployeeRequest;
+import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateEmployeeRequest;
+import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetEmployeeListResponse;
+import com.example.rent_a_car_demo.dtos.responses.getResponses.GetEmployeeResponse;
 import com.example.rent_a_car_demo.models.Employee;
 import com.example.rent_a_car_demo.repositories.EmployeeRepository;
+import com.example.rent_a_car_demo.services.abstracts.EmployeeService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class EmployeeService {
+public class EmployeeManager implements EmployeeService {
 
     private  EmployeeRepository employeeRepository;
 

@@ -1,11 +1,12 @@
-package com.example.rent_a_car_demo.services;
+package com.example.rent_a_car_demo.services.concretes;
 
-import com.example.rent_a_car_demo.dtos.requests.AddAddressRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateAddressRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetAddressListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetAddressResponse;
+import com.example.rent_a_car_demo.dtos.requests.addRequests.AddAddressRequest;
+import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateAddressRequest;
+import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetAddressListResponse;
+import com.example.rent_a_car_demo.dtos.responses.getResponses.GetAddressResponse;
 import com.example.rent_a_car_demo.models.Address;
 import com.example.rent_a_car_demo.repositories.AddressRepository;
+import com.example.rent_a_car_demo.services.abstracts.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AddressService {
+public class AddressManager implements AddressService {
     private final AddressRepository addressRepository;
 
     @Autowired
-    public AddressService(AddressRepository addressRepository) {
+    public AddressManager(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
 
@@ -45,7 +46,7 @@ public class AddressService {
     }
 
 
-    public GetAddressResponse getAddressById(Integer id) {
+    public GetAddressResponse getAddressById(int id) {
         Address address = this.addressRepository.getReferenceById(id);
         GetAddressResponse response = new GetAddressResponse();
 
@@ -90,7 +91,7 @@ public class AddressService {
         addressRepository.save(createAddress);
     }
 
-    public void deleteAddress(Integer id) {
+    public void deleteAddress(int id) {
         addressRepository.deleteById(id);
     }
 

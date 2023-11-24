@@ -1,11 +1,12 @@
-package com.example.rent_a_car_demo.services;
+package com.example.rent_a_car_demo.services.concretes;
 
-import com.example.rent_a_car_demo.dtos.requests.AddCarRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateCarRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetCarListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetCarResponse;
+import com.example.rent_a_car_demo.dtos.requests.addRequests.AddCarRequest;
+import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateCarRequest;
+import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetCarListResponse;
+import com.example.rent_a_car_demo.dtos.responses.getResponses.GetCarResponse;
 import com.example.rent_a_car_demo.models.Car;
 import com.example.rent_a_car_demo.repositories.CarRepository;
+import com.example.rent_a_car_demo.services.abstracts.CarService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class CarService {
+public class CarManager implements CarService {
     private final CarRepository carRepository;
 
 

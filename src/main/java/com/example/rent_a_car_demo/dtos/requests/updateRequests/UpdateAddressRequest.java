@@ -1,4 +1,4 @@
-package com.example.rent_a_car_demo.dtos.requests;
+package com.example.rent_a_car_demo.dtos.requests.updateRequests;
 
 import com.example.rent_a_car_demo.models.User;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateAddressRequest {
-
     private String address;
 
     private String country;

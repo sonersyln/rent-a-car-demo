@@ -1,11 +1,12 @@
-package com.example.rent_a_car_demo.services;
+package com.example.rent_a_car_demo.services.concretes;
 
-import com.example.rent_a_car_demo.dtos.requests.AddModelRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateModelRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetModelListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetModelResponse;
+import com.example.rent_a_car_demo.dtos.requests.addRequests.AddModelRequest;
+import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateModelRequest;
+import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetModelListResponse;
+import com.example.rent_a_car_demo.dtos.responses.getResponses.GetModelResponse;
 import com.example.rent_a_car_demo.models.Model;
 import com.example.rent_a_car_demo.repositories.ModelRepository;
+import com.example.rent_a_car_demo.services.abstracts.ModelService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class ModelService {
+public class ModelManager implements ModelService {
 
     private ModelRepository modelRepository;
 

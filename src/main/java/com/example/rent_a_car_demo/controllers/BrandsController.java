@@ -1,11 +1,10 @@
 package com.example.rent_a_car_demo.controllers;
 
-import com.example.rent_a_car_demo.dtos.requests.AddBrandRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateBrandRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetBrandListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetBrandResponse;
-import com.example.rent_a_car_demo.services.BrandService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import com.example.rent_a_car_demo.dtos.requests.addRequests.AddBrandRequest;
+import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateBrandRequest;
+import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetBrandListResponse;
+import com.example.rent_a_car_demo.dtos.responses.getResponses.GetBrandResponse;
+import com.example.rent_a_car_demo.services.abstracts.BrandService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

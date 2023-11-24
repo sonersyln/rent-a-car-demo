@@ -1,4 +1,4 @@
-package com.example.rent_a_car_demo.dtos.requests;
+package com.example.rent_a_car_demo.dtos.requests.updateRequests;
 
 import com.example.rent_a_car_demo.models.Brand;
 import com.example.rent_a_car_demo.models.Car;

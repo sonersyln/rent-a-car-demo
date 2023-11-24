@@ -1,26 +1,22 @@
 package com.example.rent_a_car_demo.controllers;
 
-import com.example.rent_a_car_demo.dtos.requests.AddAddressRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateAddressRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetAddressListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetAddressResponse;
-import com.example.rent_a_car_demo.models.Address;
-import com.example.rent_a_car_demo.services.AddressService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.rent_a_car_demo.dtos.requests.addRequests.AddAddressRequest;
+import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateAddressRequest;
+import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetAddressListResponse;
+import com.example.rent_a_car_demo.dtos.responses.getResponses.GetAddressResponse;
+import com.example.rent_a_car_demo.services.abstracts.AddressService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/addresses")
+@AllArgsConstructor
 public class AddressesController {
 
     private final AddressService addressService;
 
-    @Autowired
-    public AddressesController(AddressService addressService) {
-        this.addressService = addressService;
-    }
 
     @GetMapping("/getall")
     public List<GetAddressListResponse> getAllAddresses() {

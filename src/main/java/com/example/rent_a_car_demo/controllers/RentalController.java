@@ -1,11 +1,10 @@
 package com.example.rent_a_car_demo.controllers;
 
-import com.example.rent_a_car_demo.dtos.requests.AddRentalRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateRentalRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetRentalListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetRentalResponse;
-import com.example.rent_a_car_demo.models.Rental;
-import com.example.rent_a_car_demo.services.RentalService;
+import com.example.rent_a_car_demo.dtos.requests.addRequests.AddRentalRequest;
+import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateRentalRequest;
+import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetRentalListResponse;
+import com.example.rent_a_car_demo.dtos.responses.getResponses.GetRentalResponse;
+import com.example.rent_a_car_demo.services.abstracts.RentalService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
