@@ -1,4 +1,4 @@
-package com.example.rent_a_car_demo.services;
+package com.example.rent_a_car_demo.services.concretes;
 
 import com.example.rent_a_car_demo.dtos.requests.AddUserRequest;
 import com.example.rent_a_car_demo.dtos.requests.UpdateUserRequest;
