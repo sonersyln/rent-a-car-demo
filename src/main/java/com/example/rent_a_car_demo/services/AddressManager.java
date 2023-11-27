@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AddressService {
+public class AddressManager {
     private final AddressRepository addressRepository;
 
     @Autowired
-    public AddressService(AddressRepository addressRepository) {
+    public AddressManager(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
 

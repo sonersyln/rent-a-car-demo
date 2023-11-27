@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class BrandService {
+public class BrandManager {
 
     private BrandRepository brandRepository;
 

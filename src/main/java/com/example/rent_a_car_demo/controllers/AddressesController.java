@@ -4,8 +4,7 @@ import com.example.rent_a_car_demo.dtos.requests.AddAddressRequest;
 import com.example.rent_a_car_demo.dtos.requests.UpdateAddressRequest;
 import com.example.rent_a_car_demo.dtos.responses.GetAddressListResponse;
 import com.example.rent_a_car_demo.dtos.responses.GetAddressResponse;
-import com.example.rent_a_car_demo.models.Address;
-import com.example.rent_a_car_demo.services.AddressService;
+import com.example.rent_a_car_demo.services.AddressManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,36 +14,36 @@ import java.util.List;
 @RequestMapping("/api/addresses")
 public class AddressesController {
 
-    private final AddressService addressService;
+    private final AddressManager addressManager;
 
     @Autowired
-    public AddressesController(AddressService addressService) {
-        this.addressService = addressService;
+    public AddressesController(AddressManager addressManager) {
+        this.addressManager = addressManager;
     }
 
     @GetMapping("/getall")
     public List<GetAddressListResponse> getAllAddresses() {
-        return addressService.getAllAddresses();
+        return addressManager.getAllAddresses();
     }
 
     @GetMapping("/get")
     public GetAddressResponse getAddressById(@RequestParam(value = "id") Integer id) {
-        return addressService.getAddressById(id);
+        return addressManager.getAddressById(id);
     }
 
     @PostMapping("/add")
     public void saveAddress(@RequestBody AddAddressRequest request) {
-        addressService.saveAddress(request);
+        addressManager.saveAddress(request);
     }
 
     @PutMapping("/{id}")
     public void updateAddress(@PathVariable Integer id, @RequestBody UpdateAddressRequest address) {
 
-        addressService.updateAddress(id, address);
+        addressManager.updateAddress(id, address);
     }
 
     @DeleteMapping("/{id}")
     public void deleteAddress(@PathVariable Integer id) {
-        addressService.deleteAddress(id);
+        addressManager.deleteAddress(id);
     }
 }
