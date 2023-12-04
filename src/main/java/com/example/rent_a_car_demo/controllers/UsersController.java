@@ -6,8 +6,11 @@ import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetU
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetUserResponse;
 import com.example.rent_a_car_demo.services.concretes.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -56,5 +59,25 @@ public class UsersController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Integer id) {
         userManager.deleteUser(id);
+    }
+
+    @GetMapping("/gender/{gender}")
+    public List<GetUserResponse> getUsersByGender(@PathVariable String gender) {
+        return userManager.findByGender(gender);
+    }
+
+    @GetMapping("/birthdate/{birthDate}")
+    public List<GetUserResponse> getUsersBornAfterDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthDate) {
+        Date birthDateAsDate = java.sql.Date.valueOf(birthDate);
+
+        return userManager.findByBirthDateAfter(birthDateAsDate);
+    }
+
+    @GetMapping("/login")
+    public List<GetUserResponse> getUsersByEmailAndPassword(
+            @RequestParam String email,
+            @RequestParam String password
+    ) {
+        return userManager.findByEmailAndPassword(email, password);
     }
 }

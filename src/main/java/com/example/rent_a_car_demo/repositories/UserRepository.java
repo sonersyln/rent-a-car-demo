@@ -14,10 +14,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findByGender (String gender);
 
-    @Query("SELECT u FROM User u WHERE u.birthDate > :birthDate")
+    @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetUserResponse(u.firstName, u.lastName, u.username, u.email, u.phone, u.gender, u.birthDate)" +
+            "FROM User u WHERE u.birthDate > :birthDate")
     List<GetUserResponse> findByBirthDateAfter(Date birthDate);
 
-    @Query("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+    @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetUserResponse(u.firstName, u.lastName, u.username, u.email, u.phone, u.gender, u.birthDate)" +
+            "FROM User u WHERE u.email = :email AND u.password = :password")
     List<GetUserResponse> findByEmailAndPassword(String email, String password);
 
 }
