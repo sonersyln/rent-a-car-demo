@@ -14,7 +14,7 @@ public interface BrandRepository extends JpaRepository<Brand,Integer> {
     List<Brand> findByNameEndingWith(String name);
     //Benzersiz marka isimlerini bulma
     @Query("SELECT DISTINCT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse(b.name)" +
-            " FROM Brand b Where b.name = :name")
+            "FROM Brand b Where b.name = :name")
     List<GetBrandResponse> findDistinctByName(String name);
     //Belirtilen karakterden uzun markaları listeleme
     @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse(b.name)" +

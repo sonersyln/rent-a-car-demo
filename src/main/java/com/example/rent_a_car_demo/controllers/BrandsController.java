@@ -44,4 +44,23 @@ public class BrandsController {
 
         return this.brandService.deleteByBrand(id);
     }
+    @GetMapping("/start-with/{name}")
+    public List<GetBrandResponse> getBrandsStartingWith(@PathVariable String name) {
+        return this.brandService.findByNameStartingWith(name);
+    }
+
+    @GetMapping("/end-with/{name}")
+    public List<GetBrandResponse> getBrandsEndingWith(@PathVariable String name) {
+        return brandService.findByNameEndingWith(name);
+    }
+
+    @GetMapping("/distinct/{name}")
+    public List<GetBrandResponse> getDistinctBrandsByName(@PathVariable String name) {
+        return brandService.findDistinctByName(name);
+    }
+
+    @GetMapping("/length-greater-than/{length}")
+    public List<GetBrandResponse> getBrandsByNameLengthGreaterThan(@PathVariable int length) {
+        return brandService.findByNameLengthGreaterThan(length);
+    }
 }

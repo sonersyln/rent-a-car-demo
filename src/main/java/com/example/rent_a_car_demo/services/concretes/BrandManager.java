@@ -62,4 +62,36 @@ public class BrandManager implements BrandService {
         this.brandRepository.deleteById(id);
         return "Deletion successful";
     }
+
+    @Override
+    public List<GetBrandResponse> findByNameStartingWith(String name) {
+        List<Brand> brands = brandRepository.findByNameStartingWith(name);
+        List<GetBrandResponse> result = new ArrayList<GetBrandResponse>();
+
+        for (Brand brand : brands) {
+            result.add(new GetBrandResponse(brand.getName()));
+        }
+        return result;
+    }
+
+    @Override
+    public List<GetBrandResponse> findByNameEndingWith(String name) {
+        List<Brand> brands = brandRepository.findByNameEndingWith(name);
+        List<GetBrandResponse> result = new ArrayList<GetBrandResponse>();
+
+        for (Brand brand : brands) {
+            result.add(new GetBrandResponse(brand.getName()));
+        }
+        return result;
+    }
+
+    @Override
+    public List<GetBrandResponse> findDistinctByName(String name) {
+        return brandRepository.findDistinctByName(name);
+    }
+
+    @Override
+    public List<GetBrandResponse> findByNameLengthGreaterThan(int length) {
+        return brandRepository.findByNameLengthGreaterThan(length);
+    }
 }
