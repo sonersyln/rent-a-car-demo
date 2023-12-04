@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -108,4 +109,37 @@ public class UserManager implements UserService {
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public List<GetUserResponse> findByGender(String gender) {
+        List<User> users = userRepository.findByGender(gender);
+        List<GetUserResponse> userResponses = new ArrayList<>();
+
+        for (User user : users) {
+            GetUserResponse response = new GetUserResponse();
+            response.setGender(user.getGender());
+            response.setUsername(user.getUsername());
+            response.setEmail(user.getEmail());
+            response.setPhone(user.getPhone());
+            response.setFirstName(user.getFirstName());
+            response.setLastName(user.getLastName());
+            response.setBirthDate(user.getBirthDate());
+
+            userResponses.add(response);
+        }
+
+        return userResponses;
+    }
+
+    @Override
+    public List<GetUserResponse> findByBirthDateAfter(Date birthDate) {
+        return this.userRepository.findByBirthDateAfter(birthDate);
+    }
+
+    @Override
+    public List<GetUserResponse> findByEmailAndPassword(String email, String password) {
+        return this.userRepository.findByEmailAndPassword(email, password);
+    }
+
+
 }

@@ -14,4 +14,9 @@ public interface AddressService {
     void updateAddress(int id, UpdateAddressRequest address);
     void deleteAddress(int id);
 
+    List<GetAddressResponse> findByCountryOrCity(String country, String city);
+    List<GetAddressResponse> findByCountryLike(String country);
+    List<GetAddressListResponse> searchAddressByCity(String city);
+    List<GetAddressListResponse> findByCountryIn(List<String> countryList);
+
 }

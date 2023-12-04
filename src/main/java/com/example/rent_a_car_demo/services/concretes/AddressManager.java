@@ -95,5 +95,57 @@ public class AddressManager implements AddressService {
         addressRepository.deleteById(id);
     }
 
+    @Override
+    public List<GetAddressResponse> findByCountryOrCity(String country, String city) {
+        List<Address> addresses = addressRepository.findByCountryOrCity(country, city);
+        List<GetAddressResponse> response = new ArrayList<>();
+
+        for (Address address : addresses) {
+            GetAddressResponse getResponse = new GetAddressResponse();
+
+            getResponse.setCountry(address.getCountry());
+            getResponse.setCity(address.getCity());
+            getResponse.setAddress(address.getAddress());
+            getResponse.setRegion(address.getRegion());
+            getResponse.setZipCode(address.getZipCode());
+            getResponse.setUsername(address.getUser().getUsername());
+
+            response.add(getResponse);
+        }
+        return response;
+    }
+
+    @Override
+    public List<GetAddressResponse> findByCountryLike(String country) {
+        List<Address> addresses = addressRepository.findByCountryLike(country);
+        List<GetAddressResponse> response = new ArrayList<>();
+
+        for (Address address : addresses) {
+           GetAddressResponse getResponse = new GetAddressResponse();
+
+            getResponse.setCountry(address.getCountry());
+            getResponse.setCity(address.getCity());
+            getResponse.setAddress(address.getAddress());
+            getResponse.setRegion(address.getRegion());
+            getResponse.setZipCode(address.getZipCode());
+            getResponse.setUsername(address.getUser().getUsername());
+
+            response.add(getResponse);
+        }
+
+
+        return response;
+    }
+
+    @Override
+    public List<GetAddressListResponse> searchAddressByCity(String city) {
+        return this.addressRepository.searchAddressByCity(city);
+    }
+
+    @Override
+    public List<GetAddressListResponse> findByCountryIn(List<String> countryList) {
+        return this.addressRepository.findByCountryIn(countryList);
+    }
+
 
 }
