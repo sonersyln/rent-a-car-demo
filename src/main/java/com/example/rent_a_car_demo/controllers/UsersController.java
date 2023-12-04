@@ -65,9 +65,9 @@ public class UsersController {
     public List<GetUserResponse> getUsersByGender(@PathVariable String gender) {
         return userManager.findByGender(gender);
     }
-
+// Belirli tarihten sonraki doğum gününe göre kullanıcı bulma.
     @GetMapping("/birthdate/{birthDate}")
-    public List<GetUserResponse> getUsersBornAfterDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthDate) {
+    public List<GetUserResponse> findByBirthDateAfter(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthDate) {
         Date birthDateAsDate = java.sql.Date.valueOf(birthDate);
 
         return userManager.findByBirthDateAfter(birthDateAsDate);
