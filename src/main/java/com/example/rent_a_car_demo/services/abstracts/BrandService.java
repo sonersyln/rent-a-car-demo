@@ -1,11 +1,9 @@
 package com.example.rent_a_car_demo.services.abstracts;
 
-import com.example.rent_a_car_demo.dtos.requests.addRequests.AddBrandRequest;
-import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateBrandRequest;
-import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetBrandListResponse;
-import com.example.rent_a_car_demo.dtos.responses.getResponses.GetBrandResponse;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddBrandRequest;
+import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateBrandRequest;
+import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetBrandListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse;
 
 import java.util.List;
 

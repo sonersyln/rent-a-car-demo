@@ -1,9 +1,9 @@
 package com.example.rent_a_car_demo.services.concretes;
 
-import com.example.rent_a_car_demo.dtos.requests.addRequests.AddAddressRequest;
-import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateAddressRequest;
-import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetAddressListResponse;
-import com.example.rent_a_car_demo.dtos.responses.getResponses.GetAddressResponse;
+import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddAddressRequest;
+import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateAddressRequest;
+import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetAddressListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetAddressResponse;
 import com.example.rent_a_car_demo.models.Address;
 import com.example.rent_a_car_demo.repositories.AddressRepository;
 import com.example.rent_a_car_demo.services.abstracts.AddressService;

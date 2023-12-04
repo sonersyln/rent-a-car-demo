@@ -1,9 +1,9 @@
 package com.example.rent_a_car_demo.services.concretes;
 
-import com.example.rent_a_car_demo.dtos.requests.addRequests.AddBrandRequest;
-import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateBrandRequest;
-import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetBrandListResponse;
-import com.example.rent_a_car_demo.dtos.responses.getResponses.GetBrandResponse;
+import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddBrandRequest;
+import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateBrandRequest;
+import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetBrandListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse;
 import com.example.rent_a_car_demo.models.Brand;
 import com.example.rent_a_car_demo.repositories.BrandRepository;
 import com.example.rent_a_car_demo.services.abstracts.BrandService;

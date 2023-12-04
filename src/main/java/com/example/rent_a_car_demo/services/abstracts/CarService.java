@@ -1,9 +1,9 @@
 package com.example.rent_a_car_demo.services.abstracts;
 
-import com.example.rent_a_car_demo.dtos.requests.addRequests.AddCarRequest;
-import com.example.rent_a_car_demo.dtos.requests.updateRequests.UpdateCarRequest;
-import com.example.rent_a_car_demo.dtos.responses.getListResponses.GetCarListResponse;
-import com.example.rent_a_car_demo.dtos.responses.getResponses.GetCarResponse;
+import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddCarRequest;
+import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateCarRequest;
+import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetCarListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse;
 
 import java.util.List;
 
