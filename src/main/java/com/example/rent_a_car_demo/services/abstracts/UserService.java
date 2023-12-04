@@ -8,6 +8,7 @@ import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetUserR
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     List<GetUserListResponse> getAllUsers();
@@ -19,5 +20,6 @@ public interface UserService {
     List<GetUserResponse> findByGender (String gender);
     List<GetUserResponse> findByBirthDateAfter(Date birthDate);
     List<GetUserResponse> findByEmailAndPassword(String email, String password);
+    String deleteByUsername(String username);
 
 }

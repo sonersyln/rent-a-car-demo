@@ -80,4 +80,10 @@ public class UsersController {
     ) {
         return userManager.findByEmailAndPassword(email, password);
     }
+
+    @DeleteMapping("/deleteByUsername/{username}")
+    public String deleteUserByUsername(@PathVariable String username) {
+
+    return this.userManager.deleteByUsername(username);
+    }
 }

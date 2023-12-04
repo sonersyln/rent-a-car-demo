@@ -9,10 +9,12 @@ import com.example.rent_a_car_demo.repositories.UserRepository;
 import com.example.rent_a_car_demo.services.abstracts.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -139,6 +141,13 @@ public class UserManager implements UserService {
     @Override
     public List<GetUserResponse> findByEmailAndPassword(String email, String password) {
         return this.userRepository.findByEmailAndPassword(email, password);
+    }
+
+    @Transactional
+    @Override
+    public String deleteByUsername(String username) {
+        userRepository.deleteByUsername(username);
+        return "deleted successfully";
     }
 
 
