@@ -1,12 +1,12 @@
 package com.example.rent_a_car_demo.services.concretes;
 
+import com.example.rent_a_car_demo.models.Car;
+import com.example.rent_a_car_demo.repositories.CarRepository;
+import com.example.rent_a_car_demo.services.abstracts.CarService;
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddCarRequest;
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateCarRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetCarListResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse;
-import com.example.rent_a_car_demo.models.Car;
-import com.example.rent_a_car_demo.repositories.CarRepository;
-import com.example.rent_a_car_demo.services.abstracts.CarService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +74,52 @@ public class CarManager implements CarService {
 
         this.carRepository.deleteById(id);
         return "Delete Successful!";
+    }
+
+    @Override
+    public List<GetCarResponse> getCarsByColorIgnoreCase(String color) {
+        List<Car> cars = this.carRepository.findByColorIgnoreCase(color);
+        List<GetCarResponse> response = new ArrayList<>();
+
+        for (Car car : cars) {
+            GetCarResponse getResponse = new GetCarResponse();
+
+            getResponse.setColor(car.getColor());
+            getResponse.setYear(car.getYear());
+            getResponse.setRentalFee(car.getRentalFee());
+            getResponse.setLicencePlate(car.getLicencePlate());
+
+            response.add(getResponse);
+        }
+        return response;
+    }
+
+    @Override
+    public List<GetCarResponse> getCarsByYearAndColorOrderByRentalFeeDesc(Integer year, String color) {
+        List<Car> cars = this.carRepository.findByYearAndColorOrderByRentalFeeDesc(year, color);
+        List<GetCarResponse> response = new ArrayList<>();
+
+        for (Car car : cars) {
+            GetCarResponse getResponse = new GetCarResponse();
+
+            getResponse.setColor(car.getColor());
+            getResponse.setYear(car.getYear());
+            getResponse.setRentalFee(car.getRentalFee());
+            getResponse.setLicencePlate(car.getLicencePlate());
+
+            response.add(getResponse);
+        }
+        return response;
+    }
+
+    @Override
+    public List<GetCarResponse> getCarsByYearAndColorOrRentalFeeLessThan(Integer year, String color, Double rentalFee) {
+        return carRepository.findByYearAndColorOrRentalFeeLessThan(year, color, rentalFee);
+    }
+
+    @Override
+    public List<GetCarResponse> getCarsByRentalFeeBetween(Double minRentalFee, Double maxRentalFee) {
+        return carRepository.findByRentalFeeBetween(minRentalFee, maxRentalFee);
     }
 
 }

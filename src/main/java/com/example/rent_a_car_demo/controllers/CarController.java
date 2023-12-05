@@ -42,4 +42,31 @@ public class CarController {
     public String deleteCar(@PathVariable Integer id) throws Exception {
         return this.carService.deleteCar(id);
     }
+
+    @GetMapping("/byColorIgnoreCase/{color}")
+    public List<GetCarResponse> getCarsByColorIgnoreCase(@PathVariable String color) {
+        return carService.getCarsByColorIgnoreCase(color);
+    }
+
+    @GetMapping("/byYearAndColorOrderByRentalFeeDesc/{year}/{color}")
+    public List<GetCarResponse> getCarsByYearAndColorOrderByRentalFeeDesc(
+            @PathVariable Integer year,
+            @PathVariable String color) {
+        return carService.getCarsByYearAndColorOrderByRentalFeeDesc(year, color);
+    }
+
+    @GetMapping("/byYearAndColorOrRentalFeeLessThan/{year}/{color}/{rentalFee}")
+    public List<GetCarResponse> getCarsByYearAndColorOrRentalFeeLessThan(
+            @PathVariable Integer year,
+            @PathVariable String color,
+            @PathVariable Double rentalFee) {
+        return carService.getCarsByYearAndColorOrRentalFeeLessThan(year, color, rentalFee);
+    }
+
+    @GetMapping("/byRentalFeeBetween/{minRentalFee}/{maxRentalFee}")
+    public List<GetCarResponse> getCarsByRentalFeeBetween(
+            @PathVariable Double minRentalFee,
+            @PathVariable Double maxRentalFee) {
+        return carService.getCarsByRentalFeeBetween(minRentalFee, maxRentalFee);
+    }
 }

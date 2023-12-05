@@ -10,10 +10,10 @@ import java.util.List;
 public interface CarRepository extends JpaRepository<Car, Integer> {
     //renk ignore case
 
-    List<GetCarResponse> findByColorIgnoreCase(String color);
+    List<Car> findByColorIgnoreCase(String color);
     //yıl ve renge göre aynı zamanda kiralama ücretine göre sırala
 
-    List<GetCarResponse> findByYearAndColorOrderByRentalFeeDesc(Integer year, String color);
+    List<Car> findByYearAndColorOrderByRentalFeeDesc(Integer year, String color);
 
     //yıl ve renge göre ya da kiralama ücreti tutardan fazla(lessthan)
     @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse(c.year,c.color, c.rentalFee, c.licencePlate)" +
