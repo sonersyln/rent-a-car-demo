@@ -1,32 +1,35 @@
 package com.example.rent_a_car_demo.services.concretes;
 
+import com.example.rent_a_car_demo.models.Employee;
+import com.example.rent_a_car_demo.repositories.EmployeeRepository;
+import com.example.rent_a_car_demo.services.abstracts.EmployeeService;
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddEmployeeRequest;
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateEmployeeRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetEmployeeListResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetEmployeeResponse;
-import com.example.rent_a_car_demo.models.Employee;
-import com.example.rent_a_car_demo.repositories.EmployeeRepository;
-import com.example.rent_a_car_demo.services.abstracts.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class EmployeeManager implements EmployeeService {
 
-    private  EmployeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
 
 
-    public List<GetEmployeeListResponse>getEmployeeList() {
-        List<Employee>employeeList = employeeRepository.findAll();
+    public List<GetEmployeeListResponse> getEmployeeList() {
+        List<Employee> employeeList = employeeRepository.findAll();
         List<GetEmployeeListResponse> getEmployeeListResponse = new ArrayList<>();
 
         for (Employee employee : employeeList) {
             GetEmployeeListResponse response = new GetEmployeeListResponse();
             response.setFirstName(employee.getFirstName());
+            response.setUsername(employee.getUsername());
+            response.setLastName(employee.getLastName());
             getEmployeeListResponse.add(response);
         }
         return getEmployeeListResponse;
@@ -34,7 +37,7 @@ public class EmployeeManager implements EmployeeService {
     }
 
     public GetEmployeeResponse getEmployeeById(Integer id) {
-        Employee employee =employeeRepository.findById(id).orElseThrow();
+        Employee employee = employeeRepository.findById(id).orElseThrow();
 
         GetEmployeeResponse dto = new GetEmployeeResponse();
         dto.setFirstName(employee.getFirstName());
@@ -44,7 +47,7 @@ public class EmployeeManager implements EmployeeService {
         return dto;
     }
 
-    public String createEmploye (AddEmployeeRequest addEmployeeRequest) {
+    public String createEmploye(AddEmployeeRequest addEmployeeRequest) {
         Employee employee = new Employee();
         employee.setFirstName(addEmployeeRequest.getFirstName());
         employee.setLastName(addEmployeeRequest.getLastName());
@@ -58,6 +61,7 @@ public class EmployeeManager implements EmployeeService {
         employeeRepository.save(employee);
         return "Transaction Successful ";
     }
+
     public String updateEmployee(UpdateEmployeeRequest updateEmployeeRequest) {
         Employee employee = employeeRepository.findById(updateEmployeeRequest.getId()).orElseThrow();
 
@@ -76,5 +80,25 @@ public class EmployeeManager implements EmployeeService {
 
         this.employeeRepository.deleteById(id);
         return "Deletion successful";
+    }
+
+    @Override
+    public List<GetEmployeeResponse> findByRole(String role) {
+        return employeeRepository.findByRole(role);
+    }
+
+    @Override
+    public List<GetEmployeeResponse> findByBirthDateBefore(Date targetDate) {
+        return employeeRepository.findByBirthDateBefore(targetDate);
+    }
+
+    @Override
+    public List<GetEmployeeResponse> findByLastNameStartingWith(String lastName) {
+        return employeeRepository.findByLastNameStartingWith(lastName);
+    }
+
+    @Override
+    public List<GetEmployeeResponse> findByGenderAndRole(String gender, String role) {
+        return findByGenderAndRole(gender, role);
     }
 }
