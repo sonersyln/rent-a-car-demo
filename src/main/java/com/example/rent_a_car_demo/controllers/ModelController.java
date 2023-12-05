@@ -1,11 +1,6 @@
 package com.example.rent_a_car_demo.controllers;
 
 
-import com.example.rent_a_car_demo.dtos.requests.AddModelRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateModelRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetModelListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetModelResponse;
-import com.example.rent_a_car_demo.services.ModelService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddModelRequest;
@@ -54,5 +49,18 @@ public class ModelController {
     public String deleteModel(@PathVariable int id) throws Exception {
 
         return this.modelService.deleteByModel(id);
+    }
+
+    @GetMapping("/findbyname")
+    public GetModelResponse findByName(@RequestParam String name){
+
+        return this.modelService.findByName(name);
+
+    }
+    @GetMapping("/findbynamelike")
+    public List<GetModelListResponse> findByNameLike(@RequestParam String name){
+
+        return this.modelService.findByNameLike("%"+name+"%");
+
     }
 }

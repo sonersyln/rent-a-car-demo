@@ -3,6 +3,7 @@ package com.example.rent_a_car_demo.services.concretes;
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddModelRequest;
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateModelRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetModelListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetModelResponse;
 import com.example.rent_a_car_demo.models.Model;
 import com.example.rent_a_car_demo.repositories.ModelRepository;
@@ -30,7 +31,7 @@ public class ModelManager implements ModelService {
             response.setName(model.getName());
             response.setEnginePower(model.getEnginePower());
             response.setFuelType(model.getFuelType());
-            response.setBrandName(model.getBrand().getName());
+            response.setBrand(new GetBrandResponse(model.getBrand().getName()));
 
             responses.add(response);
 
@@ -46,7 +47,7 @@ public class ModelManager implements ModelService {
         response.setName(model1.getName());
         response.setEnginePower(model1.getEnginePower());
         response.setFuelType(model1.getFuelType());
-        response.setBrandName(model1.getBrand().getName());
+        response.setGetBrandResponse(new GetBrandResponse(model1.getBrand().getName()));;
 
 
         return response;
@@ -88,6 +89,33 @@ public class ModelManager implements ModelService {
 
         this.modelRepository.deleteById(id);
         return "Deletion successful";
+    }
+    public GetModelResponse findByName(String name){
+      Model model = this.modelRepository.findByName(name);
+     GetModelResponse response = new GetModelResponse();
+     response.setName(model.getName());
+     response.setEnginePower(model.getEnginePower());
+     response.setFuelType(model.getFuelType());
+     response.setGetBrandResponse(new GetBrandResponse(model.getBrand().getName()));
+
+
+        return response;
+    }
+
+    public  List<GetModelListResponse> findByNameLike(String name){
+        List<Model> models = this.modelRepository.findByNameLike(name);
+        List<GetModelListResponse> responses = new ArrayList<>();
+        for (Model  model:  models) {
+            GetModelResponse response = new GetModelResponse();
+
+            response.setName(model.getName());
+            response.setEnginePower(model.getEnginePower());
+            response.setFuelType(model.getFuelType());
+            response.setGetBrandResponse(new GetBrandResponse(model.getBrand().getName()));
+        }
+
+
+        return responses;
     }
 
 

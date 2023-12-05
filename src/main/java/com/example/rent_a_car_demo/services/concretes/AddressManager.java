@@ -14,11 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-<<<<<<<< HEAD:src/main/java/com/example/rent_a_car_demo/services/AddressManager.java
-public class AddressManager {
-========
+
+
 public class AddressManager implements AddressService {
->>>>>>>> main:src/main/java/com/example/rent_a_car_demo/services/concretes/AddressManager.java
+
     private final AddressRepository addressRepository;
 
     @Autowired
@@ -151,5 +150,5 @@ public class AddressManager implements AddressService {
         return this.addressRepository.findByCountryIn(countryList);
     }
 
-
 }
+

@@ -15,11 +15,11 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-<<<<<<<< HEAD:src/main/java/com/example/rent_a_car_demo/services/BrandManager.java
-public class BrandManager {
-========
+
+
+
 public class BrandManager implements BrandService {
->>>>>>>> main:src/main/java/com/example/rent_a_car_demo/services/concretes/BrandManager.java
+
 
     private BrandRepository brandRepository;
 
@@ -43,6 +43,7 @@ public class BrandManager implements BrandService {
 
         return dto;
     }
+
     public String createBrand(AddBrandRequest addBrandRequest) {
         Brand brand = new Brand();
         brand.setName(addBrandRequest.getName());
@@ -51,7 +52,7 @@ public class BrandManager implements BrandService {
         return "Transaction Successful ";
     }
 
-    public String updateBrand(UpdateBrandRequest updateBrandRequest ) throws Exception {
+    public String updateBrand(UpdateBrandRequest updateBrandRequest) throws Exception {
         Brand upToBrand = brandRepository.findById(updateBrandRequest.getId()).orElseThrow(() -> new Exception("Could not find Brand"));
 
         upToBrand.setName(updateBrandRequest.getName());
@@ -59,6 +60,7 @@ public class BrandManager implements BrandService {
         return "Transaction Successful";
 
     }
+
     public String deleteByBrand(int id) throws Exception {
 
         this.brandRepository.findById(id).orElseThrow(() -> new Exception("Could not"));
@@ -99,3 +101,4 @@ public class BrandManager implements BrandService {
         return brandRepository.findByNameLengthGreaterThan(length);
     }
 }
+

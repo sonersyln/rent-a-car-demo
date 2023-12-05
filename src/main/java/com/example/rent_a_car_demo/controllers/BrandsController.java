@@ -1,11 +1,7 @@
 package com.example.rent_a_car_demo.controllers;
 
 
-import com.example.rent_a_car_demo.dtos.requests.AddBrandRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateBrandRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetBrandListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetBrandResponse;
-import com.example.rent_a_car_demo.services.BrandManager;
+import com.example.rent_a_car_demo.services.concretes.BrandManager;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddBrandRequest;
@@ -55,21 +51,21 @@ public class BrandsController {
     }
     @GetMapping("/start-with/{name}")
     public List<GetBrandResponse> getBrandsStartingWith(@PathVariable String name) {
-        return this.brandService.findByNameStartingWith(name);
+        return this.brandManager.findByNameStartingWith(name);
     }
 
     @GetMapping("/end-with/{name}")
     public List<GetBrandResponse> getBrandsEndingWith(@PathVariable String name) {
-        return brandService.findByNameEndingWith(name);
+        return brandManager.findByNameEndingWith(name);
     }
 
     @GetMapping("/distinct/{name}")
     public List<GetBrandResponse> getDistinctBrandsByName(@PathVariable String name) {
-        return brandService.findDistinctByName(name);
+        return brandManager.findDistinctByName(name);
     }
 
     @GetMapping("/length-greater-than/{length}")
     public List<GetBrandResponse> getBrandsByNameLengthGreaterThan(@PathVariable int length) {
-        return brandService.findByNameLengthGreaterThan(length);
+        return brandManager.findByNameLengthGreaterThan(length);
     }
 }

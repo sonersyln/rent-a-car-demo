@@ -1,11 +1,7 @@
 package com.example.rent_a_car_demo.controllers;
 
 
-import com.example.rent_a_car_demo.dtos.requests.AddAddressRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateAddressRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetAddressListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetAddressResponse;
-import com.example.rent_a_car_demo.services.AddressManager;
+import com.example.rent_a_car_demo.services.concretes.AddressManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.rent_a_car_demo.services.abstracts.AddressService;
@@ -24,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AddressesController {
 
-    private final AddressManager addressManager;
+    private final AddressService addressManager;
 
 
     @Autowired
@@ -61,24 +57,24 @@ public class AddressesController {
 
     @GetMapping()
     public List<GetAddressResponse> findByCountryOrCity(@RequestParam String country, @RequestParam String city) {
-        return addressService.findByCountryOrCity(country, city);
+        return addressManager.findByCountryOrCity(country, city);
     }
 
     @GetMapping("/findByCountryLike")
     public List<GetAddressResponse> findByCountryLike(@RequestParam String country) {
-        return addressService.findByCountryLike(country);
+        return addressManager.findByCountryLike(country);
     }
 
     @GetMapping("/findByCountryIn")
     public List<GetAddressListResponse> findByCountryIn(@RequestParam List<String> country) {
-        return addressService.findByCountryIn(country);
+        return addressManager.findByCountryIn(country);
 
 
     }
 
     @GetMapping("/findByCityLike")
     public List<GetAddressListResponse> searchAddressByCity(@RequestParam String city) {
-        return addressService.searchAddressByCity(city);
+        return addressManager.searchAddressByCity(city);
     }
 
 }
