@@ -1,25 +1,37 @@
 package com.example.rent_a_car_demo.controllers;
 
+
 import com.example.rent_a_car_demo.dtos.requests.AddAddressRequest;
 import com.example.rent_a_car_demo.dtos.requests.UpdateAddressRequest;
 import com.example.rent_a_car_demo.dtos.responses.GetAddressListResponse;
 import com.example.rent_a_car_demo.dtos.responses.GetAddressResponse;
 import com.example.rent_a_car_demo.services.AddressManager;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.rent_a_car_demo.services.abstracts.AddressService;
+import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddAddressRequest;
+import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateAddressRequest;
+import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetAddressListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetAddressResponse;
+import lombok.AllArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/addresses")
+@AllArgsConstructor
 public class AddressesController {
 
     private final AddressManager addressManager;
+
 
     @Autowired
     public AddressesController(AddressManager addressManager) {
         this.addressManager = addressManager;
     }
+
 
     @GetMapping("/getall")
     public List<GetAddressListResponse> getAllAddresses() {
@@ -46,4 +58,27 @@ public class AddressesController {
     public void deleteAddress(@PathVariable Integer id) {
         addressManager.deleteAddress(id);
     }
+
+    @GetMapping()
+    public List<GetAddressResponse> findByCountryOrCity(@RequestParam String country, @RequestParam String city) {
+        return addressService.findByCountryOrCity(country, city);
+    }
+
+    @GetMapping("/findByCountryLike")
+    public List<GetAddressResponse> findByCountryLike(@RequestParam String country) {
+        return addressService.findByCountryLike(country);
+    }
+
+    @GetMapping("/findByCountryIn")
+    public List<GetAddressListResponse> findByCountryIn(@RequestParam List<String> country) {
+        return addressService.findByCountryIn(country);
+
+
+    }
+
+    @GetMapping("/findByCityLike")
+    public List<GetAddressListResponse> searchAddressByCity(@RequestParam String city) {
+        return addressService.searchAddressByCity(city);
+    }
+
 }

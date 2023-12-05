@@ -1,10 +1,10 @@
 package com.example.rent_a_car_demo.controllers;
 
-import com.example.rent_a_car_demo.dtos.requests.AddCarRequest;
-import com.example.rent_a_car_demo.dtos.requests.UpdateCarRequest;
-import com.example.rent_a_car_demo.dtos.responses.GetCarListResponse;
-import com.example.rent_a_car_demo.dtos.responses.GetCarResponse;
-import com.example.rent_a_car_demo.services.CarService;
+import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddCarRequest;
+import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateCarRequest;
+import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetCarListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse;
+import com.example.rent_a_car_demo.services.abstracts.CarService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,5 +41,32 @@ public class CarController {
     @DeleteMapping("/delete/{id}")
     public String deleteCar(@PathVariable Integer id) throws Exception {
         return this.carService.deleteCar(id);
+    }
+
+    @GetMapping("/byColorIgnoreCase/{color}")
+    public List<GetCarResponse> getCarsByColorIgnoreCase(@PathVariable String color) {
+        return carService.getCarsByColorIgnoreCase(color);
+    }
+
+    @GetMapping("/byYearAndColorOrderByRentalFeeDesc/{year}/{color}")
+    public List<GetCarResponse> getCarsByYearAndColorOrderByRentalFeeDesc(
+            @PathVariable Integer year,
+            @PathVariable String color) {
+        return carService.getCarsByYearAndColorOrderByRentalFeeDesc(year, color);
+    }
+
+    @GetMapping("/byYearAndColorOrRentalFeeLessThan/{year}/{color}/{rentalFee}")
+    public List<GetCarResponse> getCarsByYearAndColorOrRentalFeeLessThan(
+            @PathVariable Integer year,
+            @PathVariable String color,
+            @PathVariable Double rentalFee) {
+        return carService.getCarsByYearAndColorOrRentalFeeLessThan(year, color, rentalFee);
+    }
+
+    @GetMapping("/byRentalFeeBetween/{minRentalFee}/{maxRentalFee}")
+    public List<GetCarResponse> getCarsByRentalFeeBetween(
+            @PathVariable Double minRentalFee,
+            @PathVariable Double maxRentalFee) {
+        return carService.getCarsByRentalFeeBetween(minRentalFee, maxRentalFee);
     }
 }
