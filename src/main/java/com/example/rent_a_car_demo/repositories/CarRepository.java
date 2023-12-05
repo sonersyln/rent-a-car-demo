@@ -16,12 +16,12 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
     List<Car> findByYearAndColorOrderByRentalFeeDesc(Integer year, String color);
 
     //yıl ve renge göre ya da kiralama ücreti tutardan fazla(lessthan)
-    @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse(c.year,c.color, c.rentalFee, c.licencePlate)" +
-            " FROM Car c WHERE (c.year = :year AND c.color = :color) OR c.rentalFee < :rentalFee")
+    @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse(c.year, c.color, c.rentalFee, c.licencePlate, ct.name)" +
+            " FROM Car c LEFT JOIN c.carType ct WHERE (c.year = :year AND c.color = :color) OR c.rentalFee < :rentalFee")
     List<GetCarResponse> findByYearAndColorOrRentalFeeLessThan(Integer year, String color, Double rentalFee);
 
     //kiralama bedeli aralığı
-    @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse(c.year,c.color, c.rentalFee, c.licencePlate)" +
-            " FROM Car c WHERE c.rentalFee BETWEEN :minRentalFee AND :maxRentalFee")
+    @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse(c.year, c.color, c.rentalFee, c.licencePlate, ct.name)" +
+            " FROM Car c LEFT JOIN c.carType ct WHERE c.rentalFee BETWEEN :minRentalFee AND :maxRentalFee")
     List<GetCarResponse> findByRentalFeeBetween(Double minRentalFee, Double maxRentalFee);
 }

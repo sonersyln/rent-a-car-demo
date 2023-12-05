@@ -88,6 +88,7 @@ public class CarManager implements CarService {
             getResponse.setYear(car.getYear());
             getResponse.setRentalFee(car.getRentalFee());
             getResponse.setLicencePlate(car.getLicencePlate());
+            getResponse.setCarType(car.getCarType().getName());
 
             response.add(getResponse);
         }
@@ -106,6 +107,7 @@ public class CarManager implements CarService {
             getResponse.setYear(car.getYear());
             getResponse.setRentalFee(car.getRentalFee());
             getResponse.setLicencePlate(car.getLicencePlate());
+            getResponse.setCarType(car.getCarType().getName());
 
             response.add(getResponse);
         }

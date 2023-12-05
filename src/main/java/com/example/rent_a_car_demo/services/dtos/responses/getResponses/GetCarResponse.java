@@ -12,4 +12,5 @@ public class GetCarResponse {
     private String color;
     private Double rentalFee;
     private String licencePlate;
+    private String carType;
 }
