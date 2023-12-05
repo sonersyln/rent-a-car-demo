@@ -1,12 +1,12 @@
 package com.example.rent_a_car_demo.services.concretes;
 
+import com.example.rent_a_car_demo.models.Address;
+import com.example.rent_a_car_demo.repositories.AddressRepository;
+import com.example.rent_a_car_demo.services.abstracts.AddressService;
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddAddressRequest;
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateAddressRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetAddressListResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetAddressResponse;
-import com.example.rent_a_car_demo.models.Address;
-import com.example.rent_a_car_demo.repositories.AddressRepository;
-import com.example.rent_a_car_demo.services.abstracts.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -121,7 +121,7 @@ public class AddressManager implements AddressService {
         List<GetAddressResponse> response = new ArrayList<>();
 
         for (Address address : addresses) {
-           GetAddressResponse getResponse = new GetAddressResponse();
+            GetAddressResponse getResponse = new GetAddressResponse();
 
             getResponse.setCountry(address.getCountry());
             getResponse.setCity(address.getCity());
