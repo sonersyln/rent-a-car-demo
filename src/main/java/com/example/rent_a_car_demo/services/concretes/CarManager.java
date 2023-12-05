@@ -7,6 +7,7 @@ import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddCarRequ
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateCarRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetCarListResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarTypeResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -88,7 +89,7 @@ public class CarManager implements CarService {
             getResponse.setYear(car.getYear());
             getResponse.setRentalFee(car.getRentalFee());
             getResponse.setLicencePlate(car.getLicencePlate());
-            getResponse.setCarType(car.getCarType().getName());
+            getResponse.setCarType(new GetCarTypeResponse(car.getCarType().getName()));
 
             response.add(getResponse);
         }
@@ -107,7 +108,7 @@ public class CarManager implements CarService {
             getResponse.setYear(car.getYear());
             getResponse.setRentalFee(car.getRentalFee());
             getResponse.setLicencePlate(car.getLicencePlate());
-            getResponse.setCarType(car.getCarType().getName());
+            getResponse.setCarType(new GetCarTypeResponse(car.getCarType().getName()));
 
             response.add(getResponse);
         }

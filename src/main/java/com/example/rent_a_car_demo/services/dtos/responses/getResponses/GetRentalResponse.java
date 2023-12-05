@@ -11,4 +11,5 @@ import java.util.Date;
 public class GetRentalResponse {
     private Date rentalStartDate;
     private Date rentalEndDate;
+    private double totalCost;
 }
