@@ -5,6 +5,7 @@ import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateB
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetBrandListResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse;
 import com.example.rent_a_car_demo.services.abstracts.BrandService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class BrandsController {
     }
 
     @PostMapping("/create")
-    public String createBrand(@RequestBody AddBrandRequest addBrandRequest) {
+    public String createBrand(@RequestBody @Valid AddBrandRequest addBrandRequest) {
 
         return this.brandService.createBrand(addBrandRequest);
     }
