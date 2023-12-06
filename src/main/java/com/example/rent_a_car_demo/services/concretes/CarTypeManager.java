@@ -40,6 +40,12 @@ public class CarTypeManager implements CarTypeService {
     }
 
     public String saveCarType(AddCarTypeRequest addCarTypeRequest) {
+        boolean result = carTypeRepository.existsByName(addCarTypeRequest.getName());
+
+        if (result) {
+            throw new RuntimeException("Aynı isimde iki tür eklenemez!");
+        }
+
         CarType carType = new CarType();
         carType.setName(addCarTypeRequest.getName());
         carTypeRepository.save(carType);

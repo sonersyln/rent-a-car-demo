@@ -20,4 +20,5 @@ public interface AddressRepository extends JpaRepository<Address, Integer> {
             "FROM Address a Where a.country IN :countryList")
     List<GetAddressListResponse> findByCountryIn(List<String> countryList);
 
+
 }

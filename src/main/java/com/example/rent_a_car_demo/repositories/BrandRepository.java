@@ -12,6 +12,7 @@ public interface BrandRepository extends JpaRepository<Brand,Integer> {
     List<Brand> findByNameStartingWith(String name);
     //verilen metin ile biten tüm markaları bulma
     List<Brand> findByNameEndingWith(String name);
+    boolean existsByName(String name);
     //Benzersiz marka isimlerini bulma
     @Query("SELECT DISTINCT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse(b.name)" +
             "FROM Brand b Where b.name = :name")

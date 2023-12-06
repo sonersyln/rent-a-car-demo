@@ -40,6 +40,13 @@ public class BrandManager implements BrandService {
         return dto;
     }
     public String createBrand(AddBrandRequest addBrandRequest) {
+        boolean result = brandRepository.existsByName(addBrandRequest.getName());
+
+        if (result ) {
+            throw new RuntimeException("Aynı isimde iki marka eklenemez.");
+        }
+
+
         Brand brand = new Brand();
         brand.setName(addBrandRequest.getName());
         brandRepository.save(brand);

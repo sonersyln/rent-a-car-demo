@@ -48,6 +48,11 @@ public class CarManager implements CarService {
     }
 
     public String saveCar(AddCarRequest addCarRequest) {
+        boolean result = carRepository.existsByLicencePlate(addCarRequest.getLicencePlate());
+        if (result) {
+            throw new RuntimeException("Car already exists");
+        }
+
         Car car = new Car();
         car.setColor(addCarRequest.getColor());
         car.setYear(addCarRequest.getYear());

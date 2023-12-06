@@ -25,4 +25,6 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
             "new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarTypeResponse(ct.name))" +
             " FROM Car c LEFT JOIN c.carType ct WHERE c.rentalFee BETWEEN :minRentalFee AND :maxRentalFee")
     List<GetCarResponse> findByRentalFeeBetween(Double minRentalFee, Double maxRentalFee);
+
+    boolean existsByLicencePlate(String licancePlate);
 }

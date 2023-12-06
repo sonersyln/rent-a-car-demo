@@ -20,4 +20,5 @@ public interface CarService {
     List<GetCarResponse> getCarsByYearAndColorOrRentalFeeLessThan(Integer year, String color, Double rentalFee);
 
     List<GetCarResponse> getCarsByRentalFeeBetween(Double minRentalFee, Double maxRentalFee);
+
 }
