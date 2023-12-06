@@ -11,29 +11,25 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     //role göre bulma
     @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetEmployeeResponse" +
-            "(e.firstName,e.lastName,e.username,e.email,e.role,e.phone,e.gender,e.birthDate," +
-            "new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetRentalResponse(r.rentalStartDate,r.rentalEndDate,r.totalCost))" +
-            " FROM Employee e INNER JOIN e.rentals r Where e.role = :role")
+            "(e.firstName,e.lastName,e.username,e.email,e.role,e.phone,e.gender,e.birthDate)" +
+            " FROM Employee e Where e.role = :role")
     List<GetEmployeeResponse> findByRole(String role);
 
     //doğum gününden önce
     @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetEmployeeResponse" +
-            "(e.firstName,e.lastName,e.username,e.email,e.role,e.phone,e.gender,e.birthDate," +
-            "new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetRentalResponse(r.rentalStartDate,r.rentalEndDate,r.totalCost))" +
-            "FROM Employee e INNER JOIN e.rentals r WHERE e.birthDate < :targetDate")
+            "(e.firstName,e.lastName,e.username,e.email,e.role,e.phone,e.gender,e.birthDate)" +
+            "FROM Employee e WHERE e.birthDate < :targetDate")
     List<GetEmployeeResponse> findByBirthDateBefore(Date targetDate);
 
     //Soy adı .. ile başlayan
     @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetEmployeeResponse" +
-            "(e.firstName,e.lastName,e.username,e.email,e.role,e.phone,e.gender,e.birthDate," +
-            "new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetRentalResponse(r.rentalStartDate,r.rentalEndDate,r.totalCost))" +
-            "FROM Employee e INNER JOIN e.rentals r  WHERE LOWER(e.lastName) LIKE :lastName%")
+            "(e.firstName,e.lastName,e.username,e.email,e.role,e.phone,e.gender,e.birthDate)" +
+            "FROM Employee e WHERE LOWER(e.lastName) LIKE :lastName%")
     List<GetEmployeeResponse> findByLastNameStartingWith(String lastName);
     //cinsiyete ve role göre bulma
     @Query("SELECT new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetEmployeeResponse" +
-            "(e.firstName,e.lastName,e.username,e.email,e.role,e.phone,e.gender,e.birthDate," +
-            "new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetRentalResponse(r.rentalStartDate,r.rentalEndDate,r.totalCost))" +
-            "FROM Employee e  INNER JOIN e.rentals r WHERE e.gender = :gender AND e.role = :role")
+            "(e.firstName,e.lastName,e.username,e.email,e.role,e.phone,e.gender,e.birthDate)" +
+            "FROM Employee e WHERE e.gender = :gender AND e.role = :role")
     List<GetEmployeeResponse> findByGenderAndRole(String gender, String role);
 
 

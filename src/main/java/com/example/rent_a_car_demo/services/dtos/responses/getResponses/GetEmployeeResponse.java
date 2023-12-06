@@ -18,5 +18,4 @@ public class GetEmployeeResponse {
     private String phone;
     private String gender;
     private Date birthDate;
-    private GetRentalResponse rental;
 }
