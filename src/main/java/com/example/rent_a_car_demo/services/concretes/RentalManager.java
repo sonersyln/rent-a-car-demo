@@ -1,5 +1,11 @@
 package com.example.rent_a_car_demo.services.concretes;
 
+import com.example.rent_a_car_demo.models.Car;
+import com.example.rent_a_car_demo.models.Employee;
+import com.example.rent_a_car_demo.models.User;
+import com.example.rent_a_car_demo.repositories.CarRepository;
+import com.example.rent_a_car_demo.repositories.EmployeeRepository;
+import com.example.rent_a_car_demo.repositories.UserRepository;
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddRentalRequest;
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateRentalRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetRentalListResponse;
@@ -7,6 +13,7 @@ import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetRenta
 import com.example.rent_a_car_demo.models.Rental;
 import com.example.rent_a_car_demo.repositories.RentalRepository;
 import com.example.rent_a_car_demo.services.abstracts.RentalService;
+import jakarta.validation.ValidationException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +23,9 @@ import java.util.List;
 @AllArgsConstructor
 public class RentalManager implements RentalService {
     private RentalRepository rentalRepository;
+    private CarRepository carRepository;
+    private EmployeeRepository employeeRepository;
+    private UserRepository userRepository;
 
 
     public List<GetRentalListResponse> getRentalList() {
@@ -41,11 +51,33 @@ public class RentalManager implements RentalService {
         return dto;
     }
     public String createRental(AddRentalRequest addRentalRequest) {
+        // Tarih kontrolü yapılabilir
+        if (addRentalRequest.getRentalStartDate().after(addRentalRequest.getRentalEndDate())) {
+            throw new ValidationException("Rental start date must be before rental end date");
+        }
+
+        // Car ID'ye göre Car nesnesini al
+        Car car = carRepository.findById(addRentalRequest.getCarId())
+                .orElseThrow(() -> new RuntimeException("Car not found with ID: " + addRentalRequest.getCarId()));
+
+        // Employee ID'ye göre Employee nesnesini al
+        Employee employee = employeeRepository.findById(addRentalRequest.getEmployeeId())
+                .orElseThrow(() -> new RuntimeException("Employee not found with ID: " + addRentalRequest.getEmployeeId()));
+
+        // User ID'ye göre User nesnesini al
+        User user = userRepository.findById(addRentalRequest.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + addRentalRequest.getUserId()));
+
         Rental rental = new Rental();
         rental.setRentalStartDate(addRentalRequest.getRentalStartDate());
         rental.setRentalEndDate(addRentalRequest.getRentalEndDate());
         rental.setTotalCost(addRentalRequest.getTotalCost());
+        rental.setEmployee(employee);
+        rental.setUser(user);
+        rental.setCar(car);
+
         rentalRepository.save(rental);
+
         return "Rental Created";
     }
     public String updateRental(UpdateRentalRequest updateRentalRequest) {
