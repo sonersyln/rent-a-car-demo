@@ -94,6 +94,19 @@ public class UserManager implements UserService {
     }
 
     public String saveUser(AddUserRequest user) {
+        if (userRepository.findByUsername(user.getUsername()) != null) {
+            throw new RuntimeException("Username must be unique");
+        }
+
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            throw new RuntimeException("Email must be unique");
+        }
+
+        if (userRepository.findByPassword(user.getPassword()) != null) {
+            throw new RuntimeException("Password must be unique");
+        }
+
+
         User createdUser = new User();
         createdUser.setFirstName(user.getFirstName());
         createdUser.setLastName(user.getLastName());
@@ -101,6 +114,7 @@ public class UserManager implements UserService {
         createdUser.setEmail(user.getEmail());
         createdUser.setPhone(user.getPhone());
         createdUser.setGender(user.getGender());
+        createdUser.setPassword(user.getPassword());
         createdUser.setBirthDate(user.getBirthDate());
 
         this.userRepository.save(createdUser);

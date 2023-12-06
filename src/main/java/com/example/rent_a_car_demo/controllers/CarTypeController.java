@@ -5,6 +5,7 @@ import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateC
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetCarTypeListResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarTypeResponse;
 import com.example.rent_a_car_demo.services.abstracts.CarTypeService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class CarTypeController {
     }
 
     @PostMapping("/add")
-    public String saveCarType(@RequestBody AddCarTypeRequest addCarTypeRequest) {
+    public String saveCarType(@RequestBody @Valid AddCarTypeRequest addCarTypeRequest) {
         return carTypeService.saveCarType(addCarTypeRequest);
     }
 

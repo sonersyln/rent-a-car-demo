@@ -1,12 +1,12 @@
 package com.example.rent_a_car_demo.services.concretes;
 
+import com.example.rent_a_car_demo.models.Brand;
+import com.example.rent_a_car_demo.repositories.BrandRepository;
+import com.example.rent_a_car_demo.services.abstracts.BrandService;
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddBrandRequest;
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateBrandRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetBrandListResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse;
-import com.example.rent_a_car_demo.models.Brand;
-import com.example.rent_a_car_demo.repositories.BrandRepository;
-import com.example.rent_a_car_demo.services.abstracts.BrandService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,10 +39,11 @@ public class BrandManager implements BrandService {
 
         return dto;
     }
+
     public String createBrand(AddBrandRequest addBrandRequest) {
         boolean result = brandRepository.existsByName(addBrandRequest.getName());
 
-        if (result ) {
+        if (result) {
             throw new RuntimeException("Aynı isimde iki marka eklenemez.");
         }
 
@@ -54,7 +55,7 @@ public class BrandManager implements BrandService {
         return "Transaction Successful ";
     }
 
-    public String updateBrand(UpdateBrandRequest updateBrandRequest ) throws Exception {
+    public String updateBrand(UpdateBrandRequest updateBrandRequest) throws Exception {
         Brand upToBrand = brandRepository.findById(updateBrandRequest.getId()).orElseThrow(() -> new Exception("Could not find Brand"));
 
         upToBrand.setName(updateBrandRequest.getName());
@@ -62,6 +63,7 @@ public class BrandManager implements BrandService {
         return "Transaction Successful";
 
     }
+
     public String deleteByBrand(int id) throws Exception {
 
         this.brandRepository.findById(id).orElseThrow(() -> new Exception("Could not"));

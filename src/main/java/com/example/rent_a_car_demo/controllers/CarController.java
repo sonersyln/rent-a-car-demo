@@ -5,6 +5,7 @@ import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateC
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetCarListResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse;
 import com.example.rent_a_car_demo.services.abstracts.CarService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class CarController {
     }
 
     @PostMapping("/add")
-    public String saveCar(@RequestBody AddCarRequest addCarRequest) {
+    public String saveCar(@RequestBody @Valid AddCarRequest addCarRequest) {
         return carService.saveCar(addCarRequest);
     }
 

@@ -5,7 +5,9 @@ import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddAddress
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateAddressRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetAddressListResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetAddressResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class AddressesController {
     }
 
     @PostMapping("/add")
-    public void saveAddress(@RequestBody AddAddressRequest request) {
+    public void saveAddress(@RequestBody @Valid AddAddressRequest request) {
         addressService.saveAddress(request);
     }
 

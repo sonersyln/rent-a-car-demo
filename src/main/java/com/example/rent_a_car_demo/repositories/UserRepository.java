@@ -29,4 +29,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("DELETE FROM User u WHERE u.username = :username")
     void deleteByUsername(String username);
 
+    User findByEmail(String email);
+
+    User findByPassword(String password);
+
+
+
+
+
 }
