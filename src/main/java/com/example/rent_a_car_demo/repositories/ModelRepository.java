@@ -15,9 +15,10 @@ public interface ModelRepository extends JpaRepository<Model, Integer> {
     List<Model> findByNameLike(String name);
 
 
-    @Query("select new com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetModelListResponse(m.name,m.fuelType,m.enginePower, new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse(m.brand.name))  " +
+    @Query("select new com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetModelListResponse" +
+            "(m.name,m.fuelType,m.enginePower,new com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetBrandResponse(m.brand.name))  " +
 
-            "from Model m where m.enginePower =:enginePower and m.fuelType = : fuelType")
-    List<GetModelListResponse> findByEnginePowerAndFuelType (String enginePower, String fuelType);
+            "from Model m where m.enginePower =:enginePower or m.fuelType =: fuelType")
+     List<GetModelListResponse> searchBy (String enginePower, String fuelType);
 
 }

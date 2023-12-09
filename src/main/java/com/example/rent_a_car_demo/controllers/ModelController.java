@@ -63,4 +63,9 @@ public class ModelController {
         return this.modelService.findByNameLike("%"+name+"%");
 
     }
+    @GetMapping("/searchBy")
+    public List<GetModelListResponse> searchBy(@RequestParam String fuelType , @RequestParam String enginePower){
+
+        return this.modelService.searchBy(fuelType, enginePower);
+    }
 }

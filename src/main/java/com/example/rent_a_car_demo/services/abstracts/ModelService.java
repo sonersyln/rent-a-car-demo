@@ -18,4 +18,5 @@ public interface ModelService {
 
     GetModelResponse findByName(String name);
     List<GetModelListResponse> findByNameLike(String name);
+    List<GetModelListResponse> searchBy (String enginePower, String fuelType);
 }

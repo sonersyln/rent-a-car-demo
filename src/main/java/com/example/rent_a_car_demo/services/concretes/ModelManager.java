@@ -47,7 +47,7 @@ public class ModelManager implements ModelService {
         response.setName(model1.getName());
         response.setEnginePower(model1.getEnginePower());
         response.setFuelType(model1.getFuelType());
-        response.setGetBrandResponse(new GetBrandResponse(model1.getBrand().getName()));;
+        response.setGetBrandResponse(new GetBrandResponse(model1.getBrand().getName()));
 
 
         return response;
@@ -116,6 +116,11 @@ public class ModelManager implements ModelService {
 
 
         return responses;
+    }
+
+    @Override
+    public List<GetModelListResponse> searchBy(String enginePower, String fuelType) {
+        return this.modelRepository.searchBy(enginePower, fuelType);
     }
 
 
