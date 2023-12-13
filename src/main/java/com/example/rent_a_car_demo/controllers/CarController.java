@@ -7,6 +7,7 @@ import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarRe
 import com.example.rent_a_car_demo.services.abstracts.CarService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class CarController {
     private final CarService carService;
 
 
-    @GetMapping("/getall")
+    @GetMapping()
     public List<GetCarListResponse> getAllCar() {
         return this.carService.getAllCars();
     }
@@ -29,7 +30,8 @@ public class CarController {
         return carService.getCarById(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping()
+    @ResponseStatus(code = HttpStatus.CREATED)
     public String saveCar(@RequestBody @Valid AddCarRequest addCarRequest) {
         return carService.saveCar(addCarRequest);
     }
