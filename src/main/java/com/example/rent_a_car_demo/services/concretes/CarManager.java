@@ -51,6 +51,9 @@ public class CarManager implements CarService {
     }
 
     public String saveCar(AddCarRequest addCarRequest) {
+        String licencePlate = addCarRequest.getLicencePlate().replace(" ", "");
+        addCarRequest.setLicencePlate(licencePlate);
+
         boolean result = carRepository.existsByLicencePlate(addCarRequest.getLicencePlate());
         if (result) {
             throw new RuntimeException("Car already exists");
@@ -63,6 +66,8 @@ public class CarManager implements CarService {
     }
 
     public String updateCar(UpdateCarRequest updateCarRequest) throws Exception {
+        String licencePlate = updateCarRequest.getLicencePlate().replace(" ", "");
+        updateCarRequest.setLicencePlate(licencePlate);
         Car car = carRepository.findById(updateCarRequest.getId()).orElseThrow(() -> new Exception("Car not found!"));
         this.modelMapperService.forRequest().map(updateCarRequest, Car.class);
         this.carRepository.save(car);

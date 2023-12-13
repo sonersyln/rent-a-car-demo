@@ -1,8 +1,5 @@
 package com.example.rent_a_car_demo.services.dtos.requests.addRequests;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,8 +18,9 @@ public class AddCarRequest {
     @NotBlank(message = "Rental Fee can't be blank")
     @NotNull(message = "Rental Fee can't be null")
     private Double rentalFee;
-    @NotBlank(message = "Licance Plate can't be blank")
-    @NotNull(message = "Licance Plate can't be null")
-    @Size(max = 11, message = "Licance Plate must be exactly 11 characters!")
+    @NotBlank(message = "Licence Plate can't be blank")
+    @NotNull(message = "Licence Plate can't be null")
+    @Pattern(regexp = "(0[1-9]|[1-7][0-9]|8[01])[A-Z]{1,3}(\\d{2}|\\d{4})", message = "Invalid licence plate")
+    @Size(min = 5, max = 9, message = "Licence plate must be between 5 and 9 characters")
     private String licencePlate;
 }
