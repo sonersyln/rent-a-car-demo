@@ -12,6 +12,7 @@ import java.util.Map;
 
 
 @RestControllerAdvice
+
 public class GlobalExceptionHandler {
     //Kendi oluşturduğum exception fonksiyonu
     @ExceptionHandler(UserNotFoundException.class)

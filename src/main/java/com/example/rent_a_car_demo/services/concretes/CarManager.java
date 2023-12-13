@@ -1,5 +1,6 @@
 package com.example.rent_a_car_demo.services.concretes;
 
+import com.example.rent_a_car_demo.core.utilities.mappers.ModelMapperService;
 import com.example.rent_a_car_demo.models.Car;
 import com.example.rent_a_car_demo.repositories.CarRepository;
 import com.example.rent_a_car_demo.services.abstracts.CarService;
@@ -13,26 +14,32 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class CarManager implements CarService {
     private final CarRepository carRepository;
+    private ModelMapperService modelMapperService;
 
 
     public List<GetCarListResponse> getAllCars() {
-        List<Car> carList = carRepository.findAll();
-        List<GetCarListResponse> getCarListResponses = new ArrayList<>();
+        List<Car> cars = carRepository.findAll();
+        List<GetCarListResponse> carsResponse = cars.stream().map(car -> this.modelMapperService
+                .forResponse().map(car, GetCarListResponse.class)).collect(Collectors.toList());
+        ;
+        return carsResponse;
+       /* List<GetCarListResponse> getCarListResponses = new ArrayList<>();
 
-        for (Car car : carList) {
+        for (Car car : cars) {
             GetCarListResponse dto = new GetCarListResponse();
             dto.setColor(car.getColor());
             dto.setYear(car.getYear());
             dto.setRentalFee(car.getRentalFee());
             dto.setLicencePlate(car.getLicencePlate());
             getCarListResponses.add(dto);
-        }
-        return getCarListResponses;
+        }*/
+
     }
 
     public GetCarResponse getCarById(Integer id) {
@@ -53,12 +60,8 @@ public class CarManager implements CarService {
             throw new RuntimeException("Car already exists");
         }
 
-        Car car = new Car();
-        car.setColor(addCarRequest.getColor());
-        car.setYear(addCarRequest.getYear());
-        car.setRentalFee(addCarRequest.getRentalFee());
-        car.setLicencePlate(addCarRequest.getLicencePlate());
-        carRepository.save(car);
+        Car car = this.modelMapperService.forRequest().map(addCarRequest, Car.class);
+        this.carRepository.save(car);
 
         return "Transaction Successful ";
     }
