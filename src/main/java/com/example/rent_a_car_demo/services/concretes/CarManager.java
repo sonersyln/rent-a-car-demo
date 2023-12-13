@@ -7,6 +7,7 @@ import com.example.rent_a_car_demo.services.abstracts.CarService;
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddCarRequest;
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateCarRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetCarListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetByIdCarResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarTypeResponse;
 import lombok.AllArgsConstructor;
@@ -41,17 +42,12 @@ public class CarManager implements CarService {
         }*/
 
     }
-
-    public GetCarResponse getCarById(Integer id) {
+    //mapper
+    public GetByIdCarResponse getById(Integer id) {
         Car car = carRepository.findById(id).orElseThrow();
 
-        GetCarResponse dto = new GetCarResponse();
-        dto.setColor(car.getColor());
-        dto.setYear(car.getYear());
-        dto.setRentalFee(car.getRentalFee());
-        dto.setLicencePlate(car.getLicencePlate());
-
-        return dto;
+        GetByIdCarResponse response = modelMapperService.forResponse().map(car, GetByIdCarResponse.class);
+        return response;
     }
 
     public String saveCar(AddCarRequest addCarRequest) {
@@ -67,13 +63,9 @@ public class CarManager implements CarService {
     }
 
     public String updateCar(UpdateCarRequest updateCarRequest) throws Exception {
-        Car upToCar = carRepository.findById(updateCarRequest.getId()).orElseThrow(() -> new Exception("Car not found!"));
-
-        upToCar.setColor(updateCarRequest.getColor());
-        upToCar.setYear(updateCarRequest.getYear());
-        upToCar.setRentalFee(updateCarRequest.getRentalFee());
-        upToCar.setLicencePlate(updateCarRequest.getLicencePlate());
-        this.carRepository.save(upToCar);
+        Car car = carRepository.findById(updateCarRequest.getId()).orElseThrow(() -> new Exception("Car not found!"));
+        this.modelMapperService.forRequest().map(updateCarRequest, Car.class);
+        this.carRepository.save(car);
 
         return "Transaction Successful!";
     }

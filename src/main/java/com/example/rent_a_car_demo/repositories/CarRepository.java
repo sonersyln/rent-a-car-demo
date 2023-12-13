@@ -1,6 +1,10 @@
 package com.example.rent_a_car_demo.repositories;
 
 import com.example.rent_a_car_demo.models.Car;
+import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddCarRequest;
+import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateCarRequest;
+import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetCarListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetByIdCarResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,8 +12,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car, Integer> {
-    //renk ignore case
 
+
+    //renk ignore case
     List<Car> findByColorIgnoreCase(String color);
     //yıl ve renge göre aynı zamanda kiralama ücretine göre sırala
 

@@ -3,6 +3,7 @@ package com.example.rent_a_car_demo.controllers;
 import com.example.rent_a_car_demo.services.dtos.requests.addRequests.AddCarRequest;
 import com.example.rent_a_car_demo.services.dtos.requests.updateRequests.UpdateCarRequest;
 import com.example.rent_a_car_demo.services.dtos.responses.getListResponses.GetCarListResponse;
+import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetByIdCarResponse;
 import com.example.rent_a_car_demo.services.dtos.responses.getResponses.GetCarResponse;
 import com.example.rent_a_car_demo.services.abstracts.CarService;
 import jakarta.validation.Valid;
@@ -25,9 +26,9 @@ public class CarController {
         return this.carService.getAllCars();
     }
 
-    @GetMapping("/get")
-    public GetCarResponse getCarById(@RequestParam(value = "id") Integer id) {
-        return carService.getCarById(id);
+    @GetMapping("/get/{id}")
+    public GetByIdCarResponse getById(@PathVariable Integer id) {
+        return carService.getById(id);
     }
 
     @PostMapping()
